@@ -4,11 +4,11 @@ The Task is to analyze the Electronic medical records(EMR), and to do the binary
 
 We have prepared the data in ./Case Presentation 1 Data.
 
-Under the folder, there are 3 sub-folder (Train_Textual, Test_Intuitive, Validation) which contain 400, 400, 50 Electronic medical records.
+Under the folder, there are 3 sub-folder (Train_Textual, Test_Intuitive, Validation) which contain 400, 400, 50 Electronic medical records respectively.
 
-We've mentioned that the label of train data is Textual-based. That is, you can find some keyword(obese, obesity...) in the EMR.
+We've mentioned that the label of training data is Textual-based. That is, you can find some keyword(obese, obesity...) in the EMR.
 
-The test data is Intuitive-based. Although there is not obvious keyword in the EMR, there's still a label given by medical expert.
+The testing data is Intuitive-based. Although there is not obvious keyword in the EMR, there's still a label given by medical expert.
 
 Our pipeline
 ---
@@ -37,7 +37,7 @@ Prerequisite
         
         we also prepared the requirements for quick environment setup.
     
-    It is recommend to have at least 1 GPU to run the experiment.
+    It is suggested to have at least 1 GPU to run the experiment.
 In "requirement.txt", we have:
 
     torch==1.9.1
@@ -48,7 +48,6 @@ In "requirement.txt", we have:
     requests==2.26.0
     regex==2021.10.8
     sklearn
-    csv
 
 Usage
 ---
@@ -88,7 +87,7 @@ python prepare_data.py
 
 For the file "Bert_obesity_classifier.py": 
 
-You need to set the Data_dir to meet yor Case Presentation 1 Data file.
+You need to set the variable 'Data_dir' to meet yor Case Presentation 1 Data file.
 Please name the variable 'csv_name', which is the output csv file name stored in ./Submission folder, and remember to set the variable 'Search_Len' to run the experiment.
 
 If you encounter the CUDA Out of Memory problem, please try to half the batch size, and we can run "Bert_obesity_classifier.py" to train the model.
