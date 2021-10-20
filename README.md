@@ -15,7 +15,7 @@ Our pipeline
     
 We use both "keyword" if-else algorithm and Bert model to solve this problem. Below is out flowchart and how we final produce our submission.csv
 
-![](https://i.imgur.com/L3mLeYo.png)
+![](https://i.imgur.com/2JhXoy0.png)
 ![](https://i.imgur.com/Qt0a6gD.png)
 
 For the keyword, we use Bag-of-words algorithm to analyze the training data, and choose [obese, obesity, sleep apnea, nasal, hypoxia, obstructive, OSA, morbid obese] as our final keyword.
