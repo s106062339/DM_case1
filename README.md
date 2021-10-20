@@ -71,14 +71,12 @@ The new created data will be saved in ./Case Presentation 1 Data/{target}_{p,h}_
 
 So, if we want to run the experiment in Search_Len = 500, we will create 6 sub-folder under ./Case Presentation 1 Data:
 
-:::info
-./Train_p_500
-        ./Train_h_500
-        ./Test_p_500
-        ./Test_h_500
-        ./Validation_p_500
-        ./Validation_h_500
-:::
+    ./Train_p_500
+    ./Train_h_500
+    ./Test_p_500
+    ./Test_h_500
+    ./Validation_p_500
+    ./Validation_h_500
 
 :bulb:Run the command below to execute     
 ```bash=
