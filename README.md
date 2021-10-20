@@ -102,7 +102,7 @@ Hyperparameters
 ---
 In our model, we use the pre-train model, so there are not too much hyperparameters to set, we basicly follow the architecture and the parameter value. The only one we can adjust is learning rate, which we give the initial value 0.00001
 
-Result:
+Experiment Result:
 ---
 We have no validation label, so we show our kaggle leaderboard to present our performance. We have achieved 0.65714 f1_score on validation set, which tied for second place.
 
