@@ -1,26 +1,13 @@
 import os
 
 ###### setting ######
-Data_dir = "/home/cjho/DM_case1/Case Presentation 1 Data"
-
-# Test_Intuitive, Train_Textual, Validation
-target = "Test_Intuitive"
-half_len = 300
+Data_dir = "./Case Presentation 1 Data"
+Search_Len = 300
 ###### setting ######
 
+target_list = ["Test_Intuitive", "Train_Textual", "Validation"]
 
 foldername_target_map = {"Train_Textual": "Train", "Test_Intuitive": "Test", "Validation": "Validation"}
-
-New_Data_dir_p = os.path.join(Data_dir, foldername_target_map[target] +"_p_" + str(half_len))
-New_Data_dir_h = os.path.join(Data_dir, foldername_target_map[target] +"_h_" + str(half_len))
-
-if not os.path.exists(New_Data_dir_p):
-    os.makedirs(New_Data_dir_p)
-
-if not os.path.exists(New_Data_dir_h):
-    os.makedirs(New_Data_dir_h)
-
-current_folder = os.path.join(Data_dir, target)
 
 keyword_list = ['physical exam', 'hospital course']
 
@@ -45,74 +32,86 @@ def GetLabel(item):
 
     return gt_label
 
+for target in target_list:
 
-for item in sorted(os.listdir(current_folder)):
-    
-    gt_label = GetLabel(item)
+    New_Data_dir_p = os.path.join(Data_dir, foldername_target_map[target] +"_p_" + str(Search_Len))
+    New_Data_dir_h = os.path.join(Data_dir, foldername_target_map[target] +"_h_" + str(Search_Len))
 
-    current_file_name = os.path.join(current_folder, item)
-    
-    with open(current_file_name, "r") as f:
+    if not os.path.exists(New_Data_dir_p):
+        os.makedirs(New_Data_dir_p)
 
-        content = CleanData(f.read())
+    if not os.path.exists(New_Data_dir_h):
+        os.makedirs(New_Data_dir_h)
 
-        have_keyword = False
+    current_folder = os.path.join(Data_dir, target)
 
-        new_file_index = 1
-
-        if 'physical exam' in content:
-            
-            keyword = 'physical exam'
-            
-            have_keyword = True
-
-            ending_index = 0
-            
-            for i in range(content.count(keyword)):
-
-                index = content[ending_index:].find(keyword)
-
-                starting_index = index + ending_index
-
-                ending_index = starting_index + len(keyword)
-                
-                new_file_name = os.path.join(New_Data_dir_p, item[:-4] + "_p_" + str(new_file_index) + ".txt")
-
-                new_file_content = content[starting_index:ending_index+half_len]
-
-                with open(new_file_name, "w") as nf:
-                    nf.write(new_file_content)
-
-                new_file_index += 1
+    for item in sorted(os.listdir(current_folder)):
         
+        gt_label = GetLabel(item)
+
+        current_file_name = os.path.join(current_folder, item)
         
-        new_file_index = 1
+        with open(current_file_name, "r") as f:
 
-        if 'hospital course' in content:
-            
-            keyword = 'hospital course'
-            
-            have_keyword = True
+            content = CleanData(f.read())
 
-            ending_index = 0
-            
-            for i in range(content.count(keyword)):
+            have_keyword = False
 
-                index = content[ending_index:].find(keyword)
+            new_file_index = 1
 
-                starting_index = index + ending_index
-
-                ending_index = starting_index + len(keyword)
+            if 'physical exam' in content:
                 
-                new_file_name = os.path.join(New_Data_dir_h, item[:-4] + "_h_" + str(new_file_index) + ".txt")
+                keyword = 'physical exam'
+                
+                have_keyword = True
 
-                new_file_content = content[starting_index:ending_index+half_len]
+                ending_index = 0
+                
+                for i in range(content.count(keyword)):
 
-                with open(new_file_name, "w") as nf:
-                    nf.write(new_file_content)
+                    index = content[ending_index:].find(keyword)
 
-                new_file_index += 1
+                    starting_index = index + ending_index
+
+                    ending_index = starting_index + len(keyword)
+                    
+                    new_file_name = os.path.join(New_Data_dir_p, item[:-4] + "_p_" + str(new_file_index) + ".txt")
+
+                    new_file_content = content[starting_index:ending_index+Search_Len]
+
+                    with open(new_file_name, "w") as nf:
+                        nf.write(new_file_content)
+
+                    new_file_index += 1
+            
+            
+            new_file_index = 1
+
+            if 'hospital course' in content:
+                
+                keyword = 'hospital course'
+                
+                have_keyword = True
+
+                ending_index = 0
+                
+                for i in range(content.count(keyword)):
+
+                    index = content[ending_index:].find(keyword)
+
+                    starting_index = index + ending_index
+
+                    ending_index = starting_index + len(keyword)
+                    
+                    new_file_name = os.path.join(New_Data_dir_h, item[:-4] + "_h_" + str(new_file_index) + ".txt")
+
+                    new_file_content = content[starting_index:ending_index+Search_Len]
+
+                    with open(new_file_name, "w") as nf:
+                        nf.write(new_file_content)
+
+                    new_file_index += 1
 
 
-        if have_keyword == False:
-            print(item)
+            if have_keyword == False:
+                print(item)

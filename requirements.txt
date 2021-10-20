@@ -6,4 +6,3 @@ boto3==1.18.64
 requests==2.26.0
 regex==2021.10.8
 sklearn
-csv
